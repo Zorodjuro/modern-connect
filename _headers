@@ -1,6 +1,6 @@
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Content-Security-Policy: default-src 'self' https: 'unsafe-inline'
+  Content-Security-Policy: default-src 'self' https: 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https: data: fonts.gstatic.com fonts.googleapis.com
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 */ 
