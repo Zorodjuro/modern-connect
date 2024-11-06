@@ -1,0 +1,417 @@
+:root {
+    /* Основные цвета */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-primary: #7c3aed;
+    --accent-secondary: #2563eb;
+    
+    /* Цвета для кнопок */
+    --telegram-from: #229ED9;
+    --telegram-to: #2AABEE;
+    --vk-from: #0077FF;
+    --vk-to: #0033AA;
+    
+    /* Тени */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    
+    /* Анимации */
+    --transition-slow: 1.5s;
+    --transition-medium: 0.8s;
+    --transition-fast: 0.5s;
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Размеры */
+    --container-width: 1200px;
+    --border-radius: 1rem;
+}
+
+/* Тёмная тема */
+.dark-theme {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Базовые стили */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, var(--bg-primary), var(--bg-secondary));
+    background-size: 400% 400%;
+    color: var(--text-primary);
+    animation: gradientBG 15s var(--ease-smooth) infinite;
+    transition: all var(--transition-slow) var(--ease-smooth);
+    overflow-x: hidden;
+}
+
+/* Контейнер */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-width);
+    padding: 2rem;
+    z-index: 1;
+}
+
+/* Градиентный блоб */
+.gradient-blob {
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    filter: blur(150px);
+    opacity: 0.3;
+    background: linear-gradient(
+        45deg,
+        rgba(124, 58, 237, 0.08),
+        rgba(37, 99, 235, 0.08)
+    );
+    animation: blobMove 20s var(--ease-smooth) infinite;
+    z-index: -1;
+    transition: all var(--transition-slow) var(--ease-smooth);
+}
+
+/* Эффект шума */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+');
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* Контент */
+.content {
+    text-align: center;
+    animation: fadeIn var(--transition-medium) var(--ease-smooth);
+}
+
+/* Бейдж */
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    animation: fadeIn var(--transition-slow) var(--ease-out) 0.2s backwards;
+}
+
+/* Заголовок */
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    animation: fadeIn var(--transition-slow) var(--ease-out) 0.4s backwards;
+}
+
+.accent {
+    color: var(--accent-primary);
+    animation: pulse 5s ease-in-out infinite;
+}
+
+/* Описание */
+p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    animation: fadeIn var(--transition-slow) var(--ease-out) 0.6s backwards;
+}
+
+/* Контейнер кнопок */
+.buttons-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    animation: fadeIn var(--transition-slow) var(--ease-out) 0.8s backwards;
+}
+
+/* Продолжить? */
+
+/* Продолжение стилей - Социальные кнопки */
+.social-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    transition: all var(--transition-medium) var(--ease-smooth);
+    box-shadow: var(--shadow-md);
+    min-width: 200px;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+/* Эффект свечения для кнопок */
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-medium) var(--ease-smooth);
+    pointer-events: none;
+}
+
+/* Специфичные стили кнопок */
+.telegram-button {
+    background: linear-gradient(135deg, 
+        var(--telegram-from) 0%,
+        var(--telegram-to) 100%
+    );
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.telegram-button::before {
+    background: linear-gradient(135deg, var(--telegram-to), var(--telegram-from));
+}
+
+.vk-button {
+    background: linear-gradient(135deg, 
+        var(--vk-from) 0%,
+        var(--vk-to) 100%
+    );
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.vk-button::before {
+    background: linear-gradient(135deg, var(--vk-to), var(--vk-from));
+}
+
+/* Иконки */
+.social-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+    transition: transform var(--transition-medium) var(--ease-bounce);
+    flex-shrink: 0;
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-medium) var(--ease-bounce);
+}
+
+/* Переключатель темы */
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all var(--transition-medium) var(--ease-smooth);
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    transform: rotate(180deg) scale(1.05);
+    transition: all var(--transition-slow) var(--ease-bounce);
+}
+
+/* Hover эффекты */
+@media (hover: hover) {
+    .social-button:hover {
+        transform: translateY(-3px) scale(1.01);
+        box-shadow: var(--shadow-lg);
+        transition: all var(--transition-medium) var(--ease-out);
+    }
+
+    .social-button:hover .social-icon {
+        transform: scale(1.05) rotate(-3deg);
+    }
+
+    .social-button:hover .button-text {
+        transform: scale(1.02);
+    }
+
+    .social-button:hover .button-glow {
+        opacity: 1;
+    }
+
+    .social-button:active {
+        transform: translateY(-1px) scale(0.99);
+        transition: all 0.1s var(--ease-smooth);
+    }
+}
+
+/* Анимации */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes blobMove {
+    0% {
+        transform: translate(-30%, -30%) rotate(0deg) scale(1);
+    }
+    33% {
+        transform: translate(30%, -20%) rotate(90deg) scale(1.05);
+    }
+    66% {
+        transform: translate(-20%, 30%) rotate(180deg) scale(0.95);
+    }
+    100% {
+        transform: translate(-30%, -30%) rotate(360deg) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .buttons-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .social-button {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .gradient-blob {
+        width: 400px;
+        height: 400px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .gradient-blob {
+        animation: none;
+    }
+
+    body {
+        animation: none;
+    }
+}
+
+/* Улучшения для доступности */
+@media (prefers-contrast: high) {
+    .social-button {
+        border: 2px solid white;
+    }
+
+    .badge {
+        border: 2px solid white;
+    }
+}
+
+/* Поддержка тёмной темы системы */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Автоматическое применение тёмной темы, если она предпочтительна в системе */
+        color-scheme: dark;
+    }
+}
+
+document.querySelectorAll('.social-button').forEach(button => {
+    button.addEventListener('mousemove', e => {
+        const rect = button.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / button.clientWidth) * 100;
+        const y = ((e.clientY - rect.top) / button.clientHeight) * 100;
+        
+        button.querySelector('.button-glow').style.setProperty('--x', `${x}%`);
+        button.querySelector('.button-glow').style.setProperty('--y', `${y}%`);
+    });
+});

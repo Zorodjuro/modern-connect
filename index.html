@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Свяжитесь со мной через социальные сети - Telegram и VKontakte">
+    <meta name="keywords" content="social media, connect, telegram, vkontakte, контакты, социальные сети">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Modern Connect">
+    <meta property="og:description" content="Свяжитесь со мной через социальные сети">
+    <meta property="og:image" content="preview.jpg">
+    <meta name="theme-color" content="#7c3aed">
+    <title>Modern Connect</title>
+    
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Добавляем мета-теги для лучшей совместимости -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Безопасность -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+</head>
+<body>
+    <button id="themeToggle" class="theme-toggle" aria-label="Переключить тему">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <main class="container">
+        <div class="gradient-blob"></div>
+        <div class="noise-overlay"></div>
+        
+        <div class="content">
+            <span class="badge">Welcome</span>
+            <h1>Let's Connect<span class="accent">.</span></h1>
+            <p>Find me on social media</p>
+            
+            <div class="buttons-container">
+                <a href="https://t.me/YOUR_USERNAME" 
+                   class="social-button telegram-button" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <div class="button-glow"></div>
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    <span class="button-text">Telegram</span>
+                </a>
+                
+                <a href="https://vk.com/haks420" 
+                   class="social-button vk-button" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <div class="button-glow"></div>
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1.033-1.49-1.165-1.744-1.165-.356 0-.458.102-.458.61v1.575c0 .424-.136.678-1.252.678-1.846 0-3.896-1.118-5.337-3.202-2.17-3.048-2.76-5.337-2.76-5.812 0-.314.102-.61.61-.61h1.744c.424 0 .61.204.78.678.915 2.626 2.438 4.931 3.064 4.931.237 0 .339-.102.339-.678V11.22c-.068-1.219-.848-1.321-.848-1.744 0-.204.17-.407.441-.407h2.744c.373 0 .509.204.509.643v3.473c0 .373.17.509.271.509.237 0 .441-.136.881-.576 1.354-1.524 2.323-3.862 2.323-3.862.136-.271.373-.517.779-.517h1.744c.525 0 .644.271.525.643-.237.915-2.542 4.354-2.542 4.354-.204.305-.271.44 0 .78.204.237.881.729 1.321 1.168.915.915 1.575 1.676 1.744 2.203.17.525-.085.796-.576.796z"/>
+                    </svg>
+                    <span class="button-text">VKontakte</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('.theme-icon');
+            
+            // Проверяем системные предпчтения
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Проверяем сохраненную тему
+            const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeIcon.textContent = '☀️';
+            }
+
+            // Плавное появление контента
+            document.body.classList.add('loaded');
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                
+                if (document.body.classList.contains('dark-theme')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.textContent = '🌙';
+                }
+            });
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+      
+      // Отслеживание кликов по кнопкам
+      document.querySelectorAll('.social-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+          gtag('event', 'click', {
+            'event_category': 'social',
+            'event_label': e.currentTarget.classList.contains('telegram-button') ? 'telegram' : 'vkontakte'
+          });
+        });
+      });
+    </script>
+
+    <!-- Яндекс.Метрика -->
+    <script>
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(XXXXXXXX, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+</body>
+</html> 
