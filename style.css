@@ -122,7 +122,8 @@ body {
 
 /* Бейдж */
 .badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 0.5rem 1.25rem;
     background: var(--accent-primary);
     color: white;
@@ -132,7 +133,30 @@ body {
     letter-spacing: 0.025em;
     margin-bottom: 1.5rem;
     box-shadow: var(--shadow-sm);
-    animation: fadeIn var(--transition-slow) var(--ease-out) 0.2s backwards;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px #4ade80;
+}
+
+.status-dot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #4ade80;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 15px #4ade80,
+                0 0 25px #4ade80,
+                0 0 35px #4ade80;
 }
 
 /* Заголовок */
@@ -315,3 +339,45 @@ document.querySelectorAll('.social-button').forEach(button => {
         button.querySelector('.button-glow').style.setProperty('--y', `${y}%`);
     });
 });
+
+.animate-text {
+    background: linear-gradient(
+        to right,
+        #7c3aed,  /* Начальный цвет */
+        #3b82f6,  /* Средний цвет */
+        #7c3aed   /* Конечный цвет */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+    display: inline-block;
+}
+
+@keyframes shine {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: 200% center;
+    }
+}
+
+.glow {
+    color: #fff;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #7c3aed,
+                     0 0 20px #7c3aed,
+                     0 0 30px #7c3aed;
+    }
+    to {
+        text-shadow: 0 0 20px #3b82f6,
+                     0 0 30px #3b82f6,
+                     0 0 40px #3b82f6;
+    }
+}
