@@ -50,26 +50,38 @@
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Inter', sans-serif;
     background: linear-gradient(-45deg, var(--bg-primary), var(--bg-secondary));
-    background-size: 400% 400%;
     color: var(--text-primary);
-    animation: gradientBG 15s var(--ease-smooth) infinite;
-    transition: all var(--transition-slow) var(--ease-smooth);
+    position: relative;
     overflow-x: hidden;
 }
 
-/* Контейнер */
+/* Контейнер для частиц */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Основной контейнер */
 .container {
     position: relative;
     width: 100%;
-    max-width: var(--container-width);
+    max-width: 600px;
     padding: 2rem;
-    z-index: 1;
+    text-align: center;
+    z-index: 2;
 }
 
 /* Градиентный блоб */
@@ -151,7 +163,7 @@ p {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    animation: fadeIn var(--transition-slow) var(--ease-out) 0.8s backwards;
+    margin-top: 2rem;
 }
 
 /* Продолжить? */
@@ -167,55 +179,18 @@ p {
     text-decoration: none;
     color: white;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    overflow: hidden;
     transition: all var(--transition-medium) var(--ease-smooth);
-    box-shadow: var(--shadow-md);
     min-width: 200px;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
-/* Эффект свечения для кнопок */
-.button-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at var(--x, 50%) var(--y, 50%),
-        rgba(255, 255, 255, 0.2) 0%,
-        transparent 50%
-    );
-    opacity: 0;
-    transition: opacity var(--transition-medium) var(--ease-smooth);
-    pointer-events: none;
-}
-
-/* Специфичные стили кнопок */
 .telegram-button {
-    background: linear-gradient(135deg, 
-        var(--telegram-from) 0%,
-        var(--telegram-to) 100%
-    );
-    transition: all var(--transition-medium) var(--ease-smooth);
-}
-
-.telegram-button::before {
-    background: linear-gradient(135deg, var(--telegram-to), var(--telegram-from));
+    background: linear-gradient(135deg, var(--telegram-from), var(--telegram-to));
 }
 
 .vk-button {
-    background: linear-gradient(135deg, 
-        var(--vk-from) 0%,
-        var(--vk-to) 100%
-    );
-    transition: all var(--transition-medium) var(--ease-smooth);
-}
-
-.vk-button::before {
-    background: linear-gradient(135deg, var(--vk-to), var(--vk-from));
+    background: linear-gradient(135deg, var(--vk-from), var(--vk-to));
 }
 
 /* Иконки */
@@ -224,13 +199,37 @@ p {
     height: 1.5rem;
     fill: currentColor;
     transition: transform var(--transition-medium) var(--ease-bounce);
-    flex-shrink: 0;
 }
 
-.button-text {
-    position: relative;
-    z-index: 1;
-    transition: transform var(--transition-medium) var(--ease-bounce);
+/* Эффект свечения */
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%);
+    opacity: 0;
+    transition: opacity var(--transition-medium) var(--ease-smooth);
+    pointer-events: none;
+}
+
+/* Hover эффекты */
+@media (hover: hover) {
+    .social-button:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .social-button:hover .social-icon {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .social-button:hover .button-glow {
+        opacity: 1;
+    }
 }
 
 /* Переключатель темы */
@@ -244,8 +243,8 @@ p {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 50%;
+    z-index: 3;
     transition: all var(--transition-medium) var(--ease-smooth);
-    z-index: 2;
 }
 
 .theme-toggle:hover {
@@ -253,119 +252,20 @@ p {
     transition: all var(--transition-slow) var(--ease-bounce);
 }
 
-/* Hover эффекты */
-@media (hover: hover) {
-    .social-button:hover {
-        transform: translateY(-3px) scale(1.01);
-        box-shadow: var(--shadow-lg);
-        transition: all var(--transition-medium) var(--ease-out);
-    }
-
-    .social-button:hover .social-icon {
-        transform: scale(1.05) rotate(-3deg);
-    }
-
-    .social-button:hover .button-text {
-        transform: scale(1.02);
-    }
-
-    .social-button:hover .button-glow {
-        opacity: 1;
-    }
-
-    .social-button:active {
-        transform: translateY(-1px) scale(0.99);
-        transition: all 0.1s var(--ease-smooth);
-    }
-}
-
-/* Анимации */
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes blobMove {
-    0% {
-        transform: translate(-30%, -30%) rotate(0deg) scale(1);
-    }
-    33% {
-        transform: translate(30%, -20%) rotate(90deg) scale(1.05);
-    }
-    66% {
-        transform: translate(-20%, 30%) rotate(180deg) scale(0.95);
-    }
-    100% {
-        transform: translate(-30%, -30%) rotate(360deg) scale(1);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.8;
-    }
-}
-
 /* Медиа-запросы */
 @media (max-width: 768px) {
     .buttons-container {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
     }
 
     .social-button {
         width: 100%;
-        padding: 0.75rem 1.5rem;
+        max-width: 300px;
     }
 
-    .gradient-blob {
-        width: 400px;
-        height: 400px;
-    }
-
-    h1 {
-        font-size: 2.5rem;
+    .container {
+        padding: 1rem;
     }
 }
 
@@ -415,13 +315,3 @@ document.querySelectorAll('.social-button').forEach(button => {
         button.querySelector('.button-glow').style.setProperty('--y', `${y}%`);
     });
 });
-
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    pointer-events: none;
-}
